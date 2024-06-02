@@ -38,4 +38,6 @@ int main(void)
     savings = gasoline_cost_per_day + daily_parking_fees + tolls_per_day;
 
     printf("\nYour savings per day is: $%.2lf\n", savings); // Using dollars for convenience
+
+    return 0;
 }
