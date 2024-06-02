@@ -3,6 +3,28 @@
 #include <stdlib.h>
 #include <math.h>
 
+/** Function prototypes */
+double area(double a, double b, double c);
+
+/** C program to compute the area of a triangle given 3 sides */
+int main(void)
+{
+    double side_a, side_b, side_c;
+    double computed_area = 0.0;
+
+    printf("%s", "Enter the sides of the triangle as: a, b, c: ");
+    scanf("%lf, %lf, %lf", &side_a, &side_b, &side_c);
+
+    printf("Side A: %.2lf units\nSide B: %.2lf units\nSide C: %.2lf units", side_a, side_b, side_c);
+
+    computed_area = area(side_a, side_b, side_c);
+    printf("\nArea of the triangle is: %.2lf sq. units", computed_area);
+
+    return 0;
+}
+
+/** Function definitions */
+
 /** Computes the area of a triangle using Heron's formula 
  * 
  * Area = sqrt(s * (s - a) * (s - b) * (s - c))
@@ -24,21 +46,4 @@ double area(double a, double b, double c)
     int s = (a + b + c) / 2;
 
     return sqrt(s*(s-a)*(s-b)*(s-c));
-}
-
-/** C program to compute the area of a triangle given 3 sides */
-int main(void)
-{
-    double side_a, side_b, side_c;
-    double computed_area = 0.0;
-
-    printf("%s", "Enter the sides of the triangle as: a, b, c: ");
-    scanf("%lf, %lf, %lf", &side_a, &side_b, &side_c);
-
-    printf("Side A: %.2lf units\nSide B: %.2lf units\nSide C: %.2lf units", side_a, side_b, side_c);
-
-    computed_area = area(side_a, side_b, side_c);
-    printf("\nArea of the triangle is: %.2lf sq. units", computed_area);
-
-    return 0;
 }
