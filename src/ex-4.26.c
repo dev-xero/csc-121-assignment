@@ -1,5 +1,6 @@
 /** Header file */
 #include <stdio.h>
+#include <math.h>
 
 /** C program to compute PI approximation */
 int main(void)
@@ -11,14 +12,15 @@ int main(void)
 
     double term = 0.0;
     double approximation = 0.0;
+    double const MAX_ITERS = 1000000;
     
     int n = 1;
 
     printf("%s", "PI Approximation Table");
     printf("%s", "----------------------\n");
 
-    // Repeat 30 times
-    while (n < 31)
+    // Repeat indefinitely
+    while (n <= MAX_ITERS)
     {
         term = 4.0 / (2 * n - 1);
 
@@ -35,22 +37,27 @@ int main(void)
         if (n != 1)
         {
             // Count the number of terms needed to reach check points
-            if (approximation >= 3.14 && terms_for_3_14 == 0)
+            // Checks that the float absolute difference from the check point is very small
+            if (fabs(approximation - 3.14) < 0.0001 && terms_for_3_14 == 0)
                 terms_for_3_14 = n;
-            
-            else if (approximation >= 3.141 && terms_for_3_141 == 0)
+
+            else if (fabs(approximation - 3.141) < 0.0001 && terms_for_3_141 == 0)
                 terms_for_3_141 = n;
-            
-            else if (approximation >= 3.1415 && terms_for_3_1415 == 0)
+
+            else if (fabs(approximation - 3.1415) < 0.0001 && terms_for_3_1415 == 0)
                 terms_for_3_1415 = n;
-            
-            else if (approximation >= 3.14159 && terms_for_3_14159 == 0)
+
+            else if (fabs(approximation - 3.14159) < 0.0001 && terms_for_3_14159 == 0)
                 terms_for_3_14159 = n;
         }
+
+        if (terms_for_3_14 != 0 && terms_for_3_141 != 0 && terms_for_3_1415 != 0 && terms_for_3_14159 != 0)
+            break;
 
         n += 1;
     }
 
+    printf("\nIterations: %d", n);
     printf("\nTerms required to reach 3.14: %d", terms_for_3_14);
     printf("\nTerms required to reach 3.141: %d", terms_for_3_141);
     printf("\nTerms required to reach 3.1415: %d", terms_for_3_1415);
